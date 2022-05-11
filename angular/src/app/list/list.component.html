@@ -1,0 +1,99 @@
+<div class="container">
+    <div class="row justify-content-around mt-5 mb-5">
+        <div class="col-5 d-flex align-items-center">
+            <div class="input-group-append">
+                <span class="input-group-text " id="basic-addon2">Role</span
+        >
+      </div>
+      <select
+        class="form-select"
+        aria-label="Default select example"
+        (change)="selectRole($event)"
+      >
+        <option selected hidden>Filter by role</option>
+        <option value="all">All</option>
+        <option value="Artist">Artist</option>
+        <option value="Designer">Designer</option>
+        <option value="Art Manager">Art Manager</option>
+      </select>
+    </div>
+    <div class="col-5 align-items-center">
+      <div class="input-group">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search..."
+          aria-label="Search..."
+          aria-describedby="basic-addon2"
+          (change)="inputSearch($event)"
+        />
+        <div class="input-group-append">
+          <span
+            class="input-group-text search btn btn-secondary"
+            id="basic-addon2"
+            >Search</span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+        <th>
+          <button class="btn btn-secondary" (click)="onShowAddUser()">
+            Add New Row
+          </button>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let user of users; index as i"
+        [ngClass]="{
+          'table-default': (i + 1) % 5 == 1,
+          'table-success': (i + 1) % 5 == 2,
+          'table-danger': (i + 1) % 5 == 3,
+          'table-info': (i + 1) % 5 == 4,
+          'table-warning': (i + 1) % 5 == 0
+        }"
+      >
+        <td>{{ user.firstname }}</td>
+        <td>{{ user.lastname }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.role }}</td>
+        <td>
+          <button class="btn btn-secondary border" (click)="editUser(user)">
+            <i class="fa-solid fa-pen"></i>
+          </button>
+          <button
+            class="btn btn-secondary border"
+            (click)="deleteUser(user._id)"
+          >
+            <i class="fa-solid fa-trash-can"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="bool" class="modal">
+    <app-edit-modal
+      [item]="{bool,user,art_manager}"
+      (closeEditModal)="close($event)"
+      (newItemEvent)="updateUser($event)"
+    ></app-edit-modal>
+  </div>
+
+  <div *ngIf="showAddUser" class="modal">
+    <app-add-user
+      [item]="{showAddUser,art_manager}"
+      (closeNewUserModal)="closeAddUser($event)"
+      (newItemEvent)="addUser($event)"
+    ></app-add-user>
+  </div>
+</div>

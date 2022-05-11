@@ -1,0 +1,21 @@
+.search {
+    cursor: pointer;
+}
+
+.form-select {
+    background-image: url('../../assets/download.svg');
+    width: 34%;
+}
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100vh;
+    background: #64595966;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100000000;
+}
