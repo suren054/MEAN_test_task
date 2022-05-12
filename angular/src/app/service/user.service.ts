@@ -9,23 +9,23 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   getUser(): Observable<any> {
-    return this.http.get<any>('http://localhost:5000/user/allUsers/');
+    return this.http.get<any>('https://mean-users-app.herokuapp.com/user/allUsers/');
   }
   editUser(data:any):Observable<any>{
-    return this.http.post<any>('http://localhost:5000/user/edit',{data})
+    return this.http.post<any>('https://mean-users-app.herokuapp.com/user/edit',{data})
   }
   deleteUser(userId:string):Observable<any>{
-    return this.http.post<any>('http://localhost:5000/user/delete',{userId})
+    return this.http.post<any>('https://mean-users-app.herokuapp.com/user/delete',{userId})
   }
 
   addUser(data:any):Observable<any>{
-    return this.http.post<any>('http://localhost:5000/user/addNewUser',{data})
+    return this.http.post<any>('https://mean-users-app.herokuapp.com/user/addNewUser',{data})
   }
   filterByRole(role:string):Observable<any>{
-    return this.http.post<any>('http://localhost:5000/user/filterByRole',{role})
+    return this.http.post<any>('https://mean-users-app.herokuapp.com/user/filterByRole',{role})
   }
 
   inputSearch(text:string):Observable<any>{
-    return this.http.post<any>('http://localhost:5000/user/inputSearch',{text})
+    return this.http.post<any>('https://mean-users-app.herokuapp.com/user/inputSearch',{text})
   }
 }

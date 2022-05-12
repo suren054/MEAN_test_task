@@ -5,7 +5,6 @@ const cors = require("cors");
 const dotenv = require('dotenv');
 const UserRoute = require("./cloud/routes/user-route");
 const app = express();
-const path = require('path');
 
 dotenv.config();
 

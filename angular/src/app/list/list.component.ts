@@ -70,6 +70,8 @@ public user:object={};
        this.users = [...this.users,newUser] 
        if(event.role === "Art Manager"){
          this.art_manager = true
+       }else{
+        this.art_manager = false
        }
       })
    }
@@ -79,6 +81,8 @@ public user:object={};
         this.users = data
         if(e.role === "Art Manager"){
           this.art_manager = true
+        }else{
+          this.art_manager = false
         }
           })
    }

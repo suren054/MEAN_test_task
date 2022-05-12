@@ -14,6 +14,7 @@ class UserManager {
             lastname: req.body.data.lastname,
             email: req.body.data.email,
             role: req.body.data.role,
+            art_manager: req.body.data.role == 'Art Manager' ? true : false
         }, { new: true });
         let users = await User.find()
         res.send(users)
@@ -50,7 +51,6 @@ class UserManager {
             }
         });
 
-
         res.send(user)
     }
     static async filterByRole(req, res) {
@@ -64,10 +64,10 @@ class UserManager {
     }
     static async inputSearch(req, res) {
         let users = await User.find({
-            $or: [{ firstname: { $regex: req.body.text } },
-                { lastname: { $regex: req.body.text } },
-                { email: { $regex: req.body.text } },
-                { role: { $regex: req.body.text } }
+            $or: [{ firstname: { $regex: req.body.text, $options: 'i' } },
+                { lastname: { $regex: req.body.text, $options: 'i' } },
+                { email: { $regex: req.body.text, $options: 'i' } },
+                { role: { $regex: req.body.text, $options: 'i' } }
             ]
         });
         res.send(users)
